@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kotha Maheedhar | Portfolio</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: "Poppins", Arial, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background: #e8f5e9;
+    }
+
+    header {
+      background: #004d40;
+      color: #fff;
+      padding: 15px 20px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    .navbar .logo {
+      font-size: 1.6rem;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 20px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: #fff;
+      text-decoration: none;
+      transition: color 0.3s;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-weight: 500;
+    }
+
+    .nav-links a:hover { color: #ffeb3b; }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      gap: 5px;
+    }
+
+    .hamburger span {
+      width: 25px;
+      height: 3px;
+      background: #fff;
+      border-radius: 2px;
+    }
+
+    #menu-toggle { display: none; }
+    #menu-toggle:checked + .hamburger + .nav-links {
+      display: flex;
+      flex-direction: column;
+      background: #00695c;
+      position: absolute;
+      top: 60px;
+      right: 0;
+      width: 200px;
+      padding: 20px;
+      gap: 15px;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 80px 20px;
+      background: linear-gradient(rgba(0,77,64,0.7), rgba(0,77,64,0.7)), 
+                  url('https://images.unsplash.com/photo-1526378722484-bd91ca387e72?ixlib=rb-4.0.3&auto=format&fit=crop&w=1400&q=80') center/cover no-repeat;
+      color: #fff;
+    }
+
+    .hero h1 { font-size: 2.8rem; }
+    .hero p {
+      margin: 10px 0 20px;
+      font-size: 1.2rem;
+      font-style: italic;
+    }
+
+    .hero-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 10px 20px;
+      background: #ff9800;
+      color: #fff;
+      border-radius: 5px;
+      text-decoration: none;
+      transition: background 0.3s;
+    }
+
+    .btn:hover { background: #e68900; }
+    .download-btn { background: #009688; }
+    .download-btn:hover { background: #00796b; }
+
+    section {
+      max-width: 1100px;
+      margin: auto;
+      padding: 50px 20px;
+    }
+
+    section h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #004d40;
+    }
+
+    .about-content {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 30px;
+      text-align: center;
+    }
+
+    .about img {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 5px solid #004d40;
+    }
+
+    .about p {
+      max-width: 600px;
+      margin: 15px auto;
+      font-size: 1rem;
+    }
+
+    .skills {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+      list-style: none;
+      margin-top: 20px;
+    }
+
+    .skills li {
+      padding: 12px 18px;
+      border-radius: 8px;
+      background-size: 25px;
+      background-repeat: no-repeat;
+      background-position: 10px center;
+      padding-left: 45px;
+      font-weight: bold;
+      background-color: #ffffff;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      transition: transform 0.3s;
+    }
+
+    .skills li:hover { transform: scale(1.05); }
+
+    .skill-html { background-image: url('https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg'); }
+    .skill-css { background-image: url('https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg'); }
+    .skill-javascript { background-image: url('https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg'); }
+    .skill-linux { background-image: url('https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg'); }
+    .skill-python { background-image: url('https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg'); }
+    .skill-java { background-image: url('https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg'); }
+    .skill-postgresql { background-image: url('https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg'); }
+    .skill-git { background-image: url('https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg'); }
+    .skill-teamwork { background-image: url('https://cdn-icons-png.flaticon.com/512/194/194938.png'); }
+
+    .achievements ul {
+      list-style: none;
+      max-width: 700px;
+      margin: auto;
+      padding: 0;
+    }
+
+    .achievements li {
+      margin-bottom: 15px;
+      background: #ffffff;
+      padding: 15px;
+      border-left: 5px solid #004d40;
+      border-radius: 5px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      transition: transform 0.3s;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .achievements li:hover { transform: translateX(5px); }
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .project-card {
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      text-align: center;
+      transition: transform 0.3s;
+    }
+
+    .project-card:hover { transform: translateY(-5px); }
+    .project-card h3 {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .project-card a {
+      color: blue;
+      font-weight: 500;
+      margin: 0 8px;
+    }
+
+    .project-card a:hover { color: red; }
+
+    .tech-stack {
+      margin: 10px 0;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .tech-stack span {
+      background: #e0f2f1;
+      color: #004d40;
+      padding: 5px 12px;
+      border-radius: 15px;
+      font-size: 0.9rem;
+      font-weight: bold;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+
+    .contact p {
+      text-align: center;
+      margin: 10px 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .contact a {
+      color: #004d40;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .contact a:hover { color: #ff9800; }
+
+    footer {
+      text-align: center;
+      background: #004d40;
+      color: #fff;
+      padding: 15px 0;
+      font-size: 0.9rem;
+      opacity: 0.9;
+    }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="navbar">
+      <div class="logo">Portfolio</div>
+      <input type="checkbox" id="menu-toggle">
+      <label for="menu-toggle" class="hamburger">
+        <span></span><span></span><span></span>
+      </label>
+      <ul class="nav-links">
+        <li><a href="#home"><i class="fas fa-home"></i> Home</a></li>
+        <li><a href="#about"><i class="fas fa-user"></i> About</a></li>
+        <li><a href="#achievements"><i class="fas fa-trophy"></i> Achievements</a></li>
+        <li><a href="#projects"><i class="fas fa-laptop-code"></i> Projects</a></li>
+        <li><a href="#contact"><i class="fas fa-envelope"></i> Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section id="home" class="hero">
+    <h1>Hey there, I’m Kotha Maheedhar.</h1>
+    <p>"Turning ideas into reality — one line of code at a time."</p>
+    <div class="hero-buttons">
+      <a href="#projects" class="btn">Explore My Work</a>
+      <a href="MAHI Resume.docx" class="btn download-btn" download>
+        <i class="fas fa-download"></i> Download Resume
+      </a>
+    </div>
+  </section>
+
+  <section id="about" class="about">
+    <h2>About Me</h2>
+    <div class="about-content">
+      <img src="profile.jpg" alt="Maheedhar Photo">
+      <div>
+        <p>Hi! I’m Maheedhar, a first-year B.Tech student who loves building cool things with code. I’m passionate about learning new technologies, exploring how software works, and developing projects that make a difference. I believe in teamwork, creativity, and continuous learning.</p>
+        <h3 style="margin-top:15px; color:#004d40;">My Skills</h3>
+        <ul class="skills">
+          <li class="skill-html">HTML</li>
+          <li class="skill-css">CSS</li>
+          <li class="skill-javascript">JavaScript</li>
+          <li class="skill-linux">Linux</li>
+          <li class="skill-python">Python</li>
+          <li class="skill-java">Java</li>
+          <li class="skill-postgresql">PostgreSQL</li>
+          <li class="skill-git">Git & GitHub</li>
+          <li class="skill-teamwork">Teamwork</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="achievements" class="achievements">
+    <h2>Achievements</h2>
+    <ul>
+      <li><i class="fas fa-medal"></i> Served as Class Monitor from Grade 7 to 10, building leadership and communication skills.</li>
+      <li><i class="fas fa-calculator"></i> Completed the ADCA course under Tally Education.</li>
+      <li><i class="fas fa-lightbulb"></i> Collaborated on group projects, enhancing teamwork and problem-solving skills.</li>
+    </ul>
+  </section>
+
+  <section id="projects" class="projects">
+    <h2>My Projects</h2>
+    <div class="project-grid">
+
+      <div class="project-card">
+        <h3><i class="fas fa-globe"></i> Banking System</h3>
+        <p>A project built to simulate real-world banking operations — showcasing how transactions, records, and user details can be handled efficiently using databases.</p>
+        <div class="tech-stack">
+          <span>Python</span><span>PostgreSQL</span><span>ORM</span>
+        </div>
+        <a href="https://github.com/mahi2008324/BANKING" target="_blank">View on GitHub</a>
+      </div>
+
+      <div class="project-card">
+        <h3><i class="fas fa-gamepad"></i> Hand Gesture Game</h3>
+        <p>A fun hands-free game controller built with Python! Using a webcam, players can control the game through real-time hand gestures tracked via OpenCV and MediaPipe.</p>
+        <div class="tech-stack">
+          <span>Python</span><span>OpenCV</span><span>Mediapipe</span>
+        </div>
+        <a href="hand guesture.mp4" target="_blank">Watch Demo</a>
+        <a href="https://github.com/mahi2008324/Reinforce_Club-SST/blob/add-gesture-file/Gesture%20Control%20Gaming/surf.py" target="_blank">GitHub</a>
+      </div>
+
+      <div class="project-card">
+        <h3><i class="fas fa-id-card"></i> Mini Games Collection</h3>
+        <p>A small collection of fun Python-based mini-games like Hand Cricket, Rock-Paper-Scissors, and Quizzes — great for practicing logic and loops while having fun!</p>
+        <div class="tech-stack">
+          <span>Python</span><span>Loops</span>
+        </div>
+        <a href="https://github.com/mahi2008324/MINI_PROJECTS" target="_blank">GitHub</a>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="contact" class="contact">
+    <h2>Get in Touch</h2>
+    <p><i class="fas fa-envelope"></i> Email: <a href="mailto:kothamaheedhar2008@gmail.com">kothamaheedhar2008@gmail.com</a></p>
+    <p>
+      <i class="fab fa-linkedin"></i> <a href="https://www.linkedin.com/in/kotha-maheedhar-05515736a/" target="_blank">LinkedIn</a> | 
+      <i class="fab fa-github"></i> <a href="https://github.com/mahi2008324" target="_blank">GitHub</a>
+    </p>
+  </section>
+
+  <footer>
+    <p>© 2025 Kotha Maheedhar | Keep Learning. Keep Building. Keep Growing.</p>
+  </footer>
+</body>
+</html>
